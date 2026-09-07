@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sentinel AI - Engine Test</title>
+    <style>
+        body { font-family: sans-serif; background: #1e1e1e; color: white; padding: 2rem; }
+        pre { background: #000; padding: 1rem; border-radius: 8px; color: #00ff00; overflow-x: auto; }
+        button { padding: 10px 20px; background: #3b82f6; color: white; border: none; border-radius: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>🛡️ Sentinel AI - Raw Backend Tester</h2>
+    <input type="file" id="filePicker" accept=".eml" />
+    <button onclick="testEngine()">Initiate Scan</button>
+    
+    <h3>Forensic Payload Output:</h3>
+    <pre id="output">Waiting for telemetry...</pre>
+
+    <script>
+        async function testEngine() {
+            const fileInput = document.getElementById('filePicker');
+            const outputText = document.getElementById('output');
+            
+            if (!fileInput.files[0]) {
+                alert("Please select your HCLTech .eml file first!");
+                return;
+            }
+
+            // This is exactly how Axios will do it in React
+            const formData = new FormData();
+            formData.append('emlFile', fileInput.files[0]);
+
+            outputText.innerText = "Analyzing threat... (Waiting for Gemini AI)";
+
+            try {
+                const response = await fetch('http://localhost:5000/api/analyze', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                // Print the JSON payload beautifully on the screen
+                outputText.innerText = JSON.stringify(data, null, 4); 
+            } catch (err) {
+                outputText.innerText = "Connection Failed: " + err.message;
+            }
+        }
+    </script>
+</body>
+</html>
