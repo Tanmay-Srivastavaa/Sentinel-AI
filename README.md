@@ -3,6 +3,7 @@
 **Smart India Hackathon (SIH) 2026 Prototype**
 
 Sentinel AI is a full-stack cybersecurity application designed to automate forensic email analysis. By parsing raw `.eml` files safely in memory, the system analyzes cryptographic headers, maps network infrastructure, and leverages the Gemini 3.5 Flash-Lite AI model to detect zero-day phishing attempts and social engineering payloads.
+
 <img width="1917" height="867" alt="image" src="https://github.com/user-attachments/assets/efaec127-ff4e-46ab-9896-61bdf195cf19" />
 
 ## 🚀 Key Features
